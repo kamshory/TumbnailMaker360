@@ -21,7 +21,14 @@ document.addEventListener("DOMContentLoaded", function(e1) {
     document.querySelector('#logo').addEventListener('click', function(e2){
         html2canvas(document.querySelector("body")).then(canvas => {
             const dataURL = canvas.toDataURL("image/jpeg"); 
-            saveAs(dataURL, "thumbnail.jpg");
+            let filename = document.querySelector('#title').textContent;
+            filename = filename.trim();
+            if(filename == '')
+            {
+                filename = 'thumbnail';
+            }
+            filename = filename + '.jpg';
+            saveAs(dataURL, filename);
         });
     });
 });
